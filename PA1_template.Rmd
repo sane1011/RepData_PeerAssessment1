@@ -5,7 +5,7 @@ output:
     keep_md: true
 ---
 
-
+rmarkdown:: render("PA1_template.Rmd", output_format = "html_document")
 ## Loading and preprocessing the data
 
 Assuming that the dataset is already unzipped in the working directory.Loading the data into current session and checking the summary.
