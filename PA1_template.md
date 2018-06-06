@@ -1,3 +1,4 @@
+rmarkdown:: render("PA1_template.Rmd", output_format = "html_document")
 Assignment Project 1
 ====================
 ##Loading and preprocessing data
@@ -12,7 +13,7 @@ activity$date <- as.Date(activity$date)
 ```
 ##Mean total number of steps taken per day
 Calculating the total number of steps taken per day and plotting it
-```{r}
+```{r,fig.height =4,fig.width=4}
 totalSteps <- tapply(activity$steps,activity$date,sum,na.rm=TRUE)
 hist(totalSteps,col = "grey",main = "Total Steps taken per Day",xlab = "Total steps by date")
 ```
@@ -24,7 +25,7 @@ median(totalSteps, na.rm = TRUE)
 
 ##Average daily activity pattern 
 Time series plot of the 5 minute interval and the average number of steps taken, avaraged across all days
-```{r}
+```{r,fig.height =4,fig.width=4}
 avg_by_int <- tapply(activity$steps,activity$interval,mean,na.rm=TRUE)
 plot(row.names(avg_by_int),avg_by_int,type="l",xlab="Time intervals (in minutes", ylab = "Average of Total Steps", main = "Time Series Plot of the average of Total Steps in a Day")
 ```
@@ -51,7 +52,7 @@ new_activity$steps <- y
 ```
 Thus this new_activity dataset contains the imputed values as mean.
 Plot of total steps taken per day with missing values imputed
-```{r}
+```{r,fig.height =4,fig.width=4}
 totalSteps_new <- tapply(new_activity$steps,new_activity$date,sum)
 hist(totalSteps_new,fill = "grey",main = "Total Steps taken per Day",xlab = "Total steps by date")
 ```
@@ -78,7 +79,7 @@ The new variable days is a factor variable with two levels - "weekdays" and "wee
 
 
 
-```{r}
+```{r,fig.height =4,fig.width=4}
 new_avg_by_int <- tapply(new_activity$steps,list(new_activity$interval,new_activity$days),mean)
                          library(reshape2)
 new_avg_by_int <- melt(new_avg_by_int)
